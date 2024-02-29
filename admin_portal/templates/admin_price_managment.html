@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.0/themes/smoothness/jquery-ui.css">
+    <!-- Material icons-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <!-- Style Sheet-->
+
+    <link rel="stylesheet" href="/fuel_quote/admin_portal/static/css/bootstrap.css">
+    <link rel="stylesheet" href="/fuel_quote/admin_portal/static/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/fuel_quote/admin_portal/static/css/admin_style.css">
+</head>
+
+<body>
+    <div class="preloader-wrapper">
+        <div class="spinner"></div>
+    </div>
+    <div class="container2">
+        <!------------------ start of aside---------------->
+        <aside>
+            <div class="top">
+                <div class="logo" onclick="location.href='/fuel_quote/admin_portal'">
+                    <img src="/fuel_quote/admin_portal/static/images/admin_logo.png">
+                    <h2><span style="
+                        color: #000854;
+                    ">ADMIN</span><span style="
+                        color: #c466ff !important;
+                    ">PORTAL</span></h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <span class="material-icons-sharp">close</span>
+                </div>
+            </div>
+            <div class="sidebar" id="home_grid_main">
+                <a href="/fuel_quote/admin_portal" class="home_grid">
+                    <span class="material-icons-sharp">grid_view</span>
+                    <h3>Home</h3>
+                </a>
+                <a href="/fuel_quote/admin_portal/admin_user_managment" class="home_grid">
+                    <span class="material-icons-sharp">person_outline</span>
+                    <h3>User Management</h3>
+                </a>
+                <a href="/fuel_quote/admin_portal/admin_price_managment" class="home_grid active">
+                    <span class="material-icons-sharp">receipt_long</span>
+                    <h3>Price Management</h3>
+                </a>
+
+                <a href="/fuel_quote/logout" class="home_grid">
+                    <span class="material-icons-sharp">logout</span>
+                    <h3>Logout</h3>
+                </a>
+
+            </div>
+        </aside>
+        <!------------------ End of aside---------------->
+        <!------------------ Start of main---------------->
+        <main>
+            <section class="contact section" id="contact">
+                <h1 class="section__title">Price Management</h1>
+                <!-- <h1 class="section__title">Basic Information</h1> -->
+                <div class="contact__container contact__container2 grid">
+                    <form action="" class="contact__form grid">
+                        <div class="contact__inputs_3 grid">
+                            <div class="contact__content" hidden>
+                                <label for="user_name" class="contact__label">Price Per Gallon</label>
+                                <input type="text" id="id_" name="id_" class="contact__input" autocomplete="off" hidden>
+                            </div>
+                            <div class="contact__content">
+                                <label for="user_rule" class="contact__label">Fuel Type</label>
+                                <select name="user_rule" id="user_rule" class="contact__input" onchange="">
+                                    <option value="None">--Select--</option>
+                                    <option value="diesel">Diesel</option>
+                                    <option value="gasoline">Gasoline</option>
+                                    <!-- <option value="java">EUR</option> -->
+                                </select>
+                                <p style="color: red;font-size: 0.75rem;" id="vl_user_rule" class="required_">Fuel Type Is Required</p>
+                            </div>
+                            <div class="contact__content">
+                                <label for="user_name" class="contact__label">Price Per Gallon</label>
+                                <input type="text" id="user_name" name="user_name" class="contact__input" autocomplete="off">
+                                <p style="color: red;font-size: 0.75rem;" id="vl_user_name" class="required_">Price Per Gallon</p>
+                            </div>
+                            <div class="contact__content">
+                                <label for="display_name" class="contact__label">Quantity Available</label>
+                                <input type="text" id="display_name" name="display_name" class="contact__input" autocomplete="off">
+                                <p style="color: red;font-size: 0.75rem;" id="vl_display_name" class="required_">Quantity Available Is Required</p>
+                            </div>
+                        </div>
+
+                        <div class="grid">
+
+                            <div>
+                                <a href="#" id="new_user" class="button button--flex" style="margin-left: 360px;" onclick="init_price_register(this.id);">
+                                    Save Details<span class="material-icons-sharp button__icon">person_add</span>
+                                    <!-- <i class="uil uil-save button__icon"></i> -->
+                                </a>
+                                <a href="#" id="update_user" class="button button--flex danger" style="background-color: #da6464;margin-left: 360px;" onclick="init_price_register(this.id);">Update User<span class="material-icons-sharp button__icon">update</span>
+                                    <!-- <i class="uil uil-save button__icon"></i> -->
+                                </a>
+                            </div>
+<!--                            <div>-->
+<!--                                <a href="#" id="update_user" class="button button&#45;&#45;flex danger" style="margin-left: -30px;background-color: #da6464;">Update User<span class="material-icons-sharp button__icon">update</span>-->
+<!--                                    &lt;!&ndash; <i class="uil uil-save button__icon"></i> &ndash;&gt;-->
+<!--                                </a>-->
+<!--                            </div>-->
+                        </div>
+                    </form>
+                </div>
+            </section>
+            <section class="quote_table section" id="quote_table" style="
+        padding: 2rem 0 2rem !important;margin-top: -32px;
+    ">
+                <!-- <h2 class="section__title">Basic Information</h2>
+            <span class="section__subtitle" style="visibility:hidden">Get in touch</span> -->
+
+                <div class="Datatable__quit__container quit__container">
+                    <div class="container-fluid">
+                        <div class="table-card field-anim-13" style="border: 0 !important;">
+                            <div class="card-body" style="
+                        background-color: white;
+                        padding: 2rem 1.5rem 2rem;
+                        box-shadow: 0 -1px 4px rgb(0 0 0 / 15%);
+                        border-radius: 1.5rem 1.5rem 1.5rem 1.5rem;
+                        margin-left: 5px;
+                        margin-right: -10px;
+                        display: block;
+                        overflow: auto;
+                        max-height: 340px;
+                        /* border-radius: 5px; */
+                    ">
+                                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
+                                        <tr style="background:#5689e0">
+                                            <th style="width: 179.004px; color: white;">Price ID</th>
+                                            <th style="width: 179.004px; color: white;">Price</th>
+                                            <th style="width: 179.004px; color: white;">Quantity</th>
+                                            <th style="width: 179.004px; color: white;">Fuel Name</th>
+                                            <th style="width: 179.004px; color: white;">Edit</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for name in range(count_for_list) %}
+                                        <tr>
+                                            <td>{{ List_[name][0]}}</td>
+                                            <td>{{ List_[name][1]}}</td>
+                                            <td>{{ List_[name][2]}}</td>
+                                            <td>{{ List_[name][3]}}</td>
+                                            <td><a href="#" class="save-file">Edit</a></td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+        <!---------------------------End Of Main-------------------------->
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <span class="material-icons-sharp">menu</span>
+                </button>
+                <div class="theme-toggler">
+                    <span class="material-icons-sharp active">light_mode</span>
+                    <span class="material-icons-sharp">dark_mode</span>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Hey, <b>{{display_name}}</b></p>
+                        <small class="text-muted">{{role_}}</small>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="/fuel_quote/admin_portal/static/images/profile-1.png">
+                    </div>
+                </div>
+            </div>
+<!--            <div class="sales-analytics">-->
+<!--                <h2>Users Count</h2>-->
+<!--                <div class="item online">-->
+<!--                    <div class="icon">-->
+<!--                        <span class="material-icons-sharp">-->
+<!--                            groups-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                    <div class="right">-->
+<!--                        <div class="info">-->
+<!--                            <h3>Number Of Users</h3>-->
+<!--                        </div>-->
+<!--                        <h3>{{count_of_users}}</h3>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="item customers">-->
+<!--                    <div class="icon">-->
+<!--                        <span class="material-icons-sharp">-->
+<!--                            person_add_alt-->
+<!--                        </span>-->
+<!--                    </div>-->
+<!--                    <div class="right">-->
+<!--                        <div class="info">-->
+<!--                            <h3>Active Usres</h3>-->
+<!--                        </div>-->
+<!--                        <h3>{{count_of_active}}</h3>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="item offline">-->
+<!--                    <div class="icon">-->
+<!--                        <span class="material-icons-sharp">person_remove</span>-->
+<!--                    </div>-->
+<!--                    <div class="right">-->
+<!--                        <div class="info">-->
+<!--                            <h3>InActive Usres</h3>-->
+<!--                        </div>-->
+<!--                        <h3>{{count_of_inactive}}</h3>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--            </div>-->
+
+        </div>
+    </div>
+    <script src="/fuel_quote/admin_portal/static/js/jquery-3.5.1.js"></script>
+     <script src="/fuel_quote/admin_portal/static/js/jquery.dataTables.min.js"></script>
+    <script src="/fuel_quote/admin_portal/static/js/dataTables.bootstrap4.min.js"></script>
+
+    <!-- <script src="./orders.js"></script> -->
+    <script src="/fuel_quote/admin_portal/static/js/admin_index.js"></script>
+    <script>
+       $(window).on('load',function () {
+            $('.preloader-wrapper').fadeOut();
+        });
+
+        $(document).ready(function () {
+            $('#example').DataTable();
+        });
+    </script>
+<script>
+        window.addEventListener('load', (event) => {
+          document.getElementById('update_user').style.display = 'none';
+        });
+    </script>
+<script>
+    $(document).ready(function (){
+
+    var table = $('#example').DataTable();
+    $('#example tbody').on( 'click', 'td', function () {
+       if ( $(this).hasClass('selected') ) {
+           $(this).removeClass('selected');
+       } else {
+           table.$('tr.selected').removeClass('selected');
+           $(this).closest('tr').addClass('selected');
+           var data = $('#example').DataTable().row('.selected').data();
+           document.getElementById('update_user').style.display = '';
+           document.getElementById('new_user').style.display = 'none';
+           document.getElementById('id_').value=data[0];
+           document.getElementById('display_name').value=data[2];
+           document.getElementById('user_rule').value=data[3];
+           document.getElementById('user_name').value=data[1];
+           document.getElementById("user_rule").disabled = true;
+
+       }
+   });
+});
+  </script>
+</body>
+
+</html>
